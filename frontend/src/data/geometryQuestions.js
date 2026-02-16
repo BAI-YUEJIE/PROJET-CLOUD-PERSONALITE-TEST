@@ -2,7 +2,7 @@ export const geometryModules = [
   {
     id: 1,
     title: "Module 1: Style de Travail",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Organisation et planification détaillée" },
       { id: "triangle", shape: "🔺", text: "Efficacité et atteinte des objectifs" },
@@ -15,7 +15,7 @@ export const geometryModules = [
   {
     id: 2,
     title: "Module 2: Style Social",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Observer et analyser la situation" },
       { id: "triangle", shape: "🔺", text: "Diriger et influencer les discussions" },
@@ -28,7 +28,7 @@ export const geometryModules = [
   {
     id: 3,
     title: "Module 3: Prise de Décision",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Analyser les données et faits" },
       { id: "triangle", shape: "🔺", text: "Décider rapidement et agir" },
@@ -41,7 +41,7 @@ export const geometryModules = [
   {
     id: 4,
     title: "Module 4: Gestion du Stress",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Créer un plan détaillé" },
       { id: "triangle", shape: "🔺", text: "Prendre le contrôle de la situation" },
@@ -54,7 +54,7 @@ export const geometryModules = [
   {
     id: 5,
     title: "Module 5: Communication",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Être précis et factuel" },
       { id: "triangle", shape: "🔺", text: "Être direct et concis" },
@@ -67,7 +67,7 @@ export const geometryModules = [
   {
     id: 6,
     title: "Module 6: Apprentissage",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Suivre une méthode structurée" },
       { id: "triangle", shape: "🔺", text: "Apprendre par la pratique directe" },
@@ -80,7 +80,7 @@ export const geometryModules = [
   {
     id: 7,
     title: "Module 7: Valeurs Principales",
-    description: "Classez ces options de 1 (plus important) à 6 (moins important)",
+    description: "Classez ces options de 6 (plus important) à 1 (moins important)", // ← 改这里
     options: [
       { id: "square", shape: "⬜", text: "Ordre et stabilité" },
       { id: "triangle", shape: "🔺", text: "Succès et accomplissement" },
