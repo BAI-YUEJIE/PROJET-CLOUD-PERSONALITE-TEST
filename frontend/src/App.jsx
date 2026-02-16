@@ -1,13 +1,43 @@
 import { useState } from 'react';
 import Accueil from './pages/Accueil';
+import TestPage from './pages/TestPage';
+import { calculerScoresMock } from './utils/calculerGeometrie';
 import './styles/App.css';
 
 function App() {
   const [pageActuelle, setPageActuelle] = useState('accueil');
-  // 'accueil' | 'test' | 'resultat'
+  const [resultatsFinaux, setResultatsFinaux] = useState(null);
 
   const demarrerTest = () => {
     setPageActuelle('test');
+  };
+
+  const retourAccueil = () => {
+    setPageActuelle('accueil');
+    setResultatsFinaux(null);
+  };
+
+  const terminerTest = (classements) => {
+    console.log('📊 Classements utilisateur:', classements);
+    
+    // 🚧 MODE DÉVELOPPEMENT: Utiliser Mock
+    const resultats = calculerScoresMock(classements);
+    console.log('✅ Résultats calculés (MOCK):', resultats);
+    
+    // 🔜 MODE PRODUCTION: Appeler vrai backend
+    // fetch('API_GATEWAY_URL/submit', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ rankings: classements })
+    // })
+    // .then(res => res.json())
+    // .then(resultats => {
+    //   setResultatsFinaux(resultats);
+    //   setPageActuelle('resultat');
+    // });
+    
+    setResultatsFinaux(resultats);
+    setPageActuelle('resultat');
   };
 
   return (
@@ -17,19 +47,20 @@ function App() {
       )}
       
       {pageActuelle === 'test' && (
-        <div className="page-temporaire">
-          <h1>Page de test</h1>
-          <p>Module 1/7 - À développer prochainement</p>
-          <button onClick={() => setPageActuelle('accueil')}>
-            Retour à l'accueil
-          </button>
-        </div>
+        <TestPage 
+          onTerminer={terminerTest}
+          onRetour={retourAccueil}
+        />
       )}
 
       {pageActuelle === 'resultat' && (
         <div className="page-temporaire">
-          <h1>Page de résultat</h1>
-          <p>À développer prochainement</p>
+          <h1>Résultats</h1>
+          <p>Votre type principal: <strong>{resultatsFinaux?.typePrincipal}</strong></p>
+          <pre>{JSON.stringify(resultatsFinaux, null, 2)}</pre>
+          <button onClick={retourAccueil}>
+            Retour à l'accueil
+          </button>
         </div>
       )}
     </div>
