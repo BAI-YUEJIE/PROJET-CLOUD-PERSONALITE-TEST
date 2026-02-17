@@ -5,24 +5,42 @@ function QuestionClassement({ module, classement, onChangementClassement }) {
   const [classementLocal, setClassementLocal] = useState(classement || {});
   const [erreur, setErreur] = useState('');
 
-  // Vérifier si tous les rangs sont utilisés
-  const estComplet = () => {
-    const rangs = Object.values(classementLocal);
-    return rangs.length === 6 && 
-           rangs.every(r => r !== null) &&
-           new Set(rangs).size === 6;
-  };
 
-  // Obtenir les rangs déjà utilisés
+  useEffect(() => {
+    console.log('Module changé:', module.id, 'Classement:', classement);
+    setClassementLocal(classement || {});
+  }, [module.id, classement]);
+
+
   const getRangsUtilises = () => {
-    return Object.values(classementLocal).filter(r => r !== null);
+    return Object.values(classementLocal)
+      .filter(r => r !== null && r !== '')
+      .map(r => parseInt(r));
   };
 
-  // Gérer le changement de rang
+
+  const verifierComplet = (classement) => {
+    const rangs = Object.values(classement)
+      .filter(r => r !== null && r !== '');
+    
+    const complete = rangs.length === 6 && new Set(rangs).size === 6;
+    
+    console.log('Vérification:', {
+      moduleId: module.id,
+      rangs,
+      length: rangs.length,
+      unique: new Set(rangs).size,
+      complete
+    });
+    
+    return complete;
+  };
+
+
   const handleChangementRang = (optionId, rang) => {
     const nouveauRang = rang === '' ? null : parseInt(rang);
     
-    // Vérifier si le rang est déjà utilisé
+
     if (nouveauRang !== null) {
       const optionAvecCeRang = Object.entries(classementLocal).find(
         ([id, r]) => r === nouveauRang && id !== optionId
@@ -43,15 +61,9 @@ function QuestionClassement({ module, classement, onChangementClassement }) {
     setClassementLocal(nouveauClassement);
     setErreur('');
     
-    // Notifier le parent
-    onChangementClassement(nouveauClassement, estCompletAvecNouveau(nouveauClassement));
-  };
 
-  const estCompletAvecNouveau = (classement) => {
-    const rangs = Object.values(classement);
-    return rangs.length === 6 && 
-           rangs.every(r => r !== null) &&
-           new Set(rangs).size === 6;
+    const estComplet = verifierComplet(nouveauClassement);
+    onChangementClassement(nouveauClassement, estComplet);
   };
 
   return (
