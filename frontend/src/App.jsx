@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Accueil from './pages/Accueil';
 import TestPage from './pages/TestPage';
+import Resultat from './pages/Resultat';
 import { calculerScoresMock } from './utils/calculerGeometrie';
 import './styles/App.css';
 
@@ -10,6 +11,7 @@ function App() {
 
   const demarrerTest = () => {
     setPageActuelle('test');
+    setResultatsFinaux(null);
   };
 
   const retourAccueil = () => {
@@ -53,15 +55,11 @@ function App() {
         />
       )}
 
-      {pageActuelle === 'resultat' && (
-        <div className="page-temporaire">
-          <h1>Résultats</h1>
-          <p>Votre type principal: <strong>{resultatsFinaux?.typePrincipal}</strong></p>
-          <pre>{JSON.stringify(resultatsFinaux, null, 2)}</pre>
-          <button onClick={retourAccueil}>
-            Retour à l'accueil
-          </button>
-        </div>
+      {pageActuelle === 'resultat' && resultatsFinaux && (
+        <Resultat 
+          resultats={resultatsFinaux}
+          onRecommencer={retourAccueil}
+        />
       )}
     </div>
   );
