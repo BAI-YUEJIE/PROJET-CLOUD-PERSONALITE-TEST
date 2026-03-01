@@ -45,3 +45,13 @@ desktop.ini
 
 # LocalStack
 .localstack/
+
+# Node
+node_modules/
+
+# Build artifacts
+*.zip
+out.json
+
+# Local files
+localstack/

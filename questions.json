@@ -1,0 +1,13 @@
+﻿[
+  {
+    "blockId": "B1",
+    "statements": [
+      {"id":"s1","label":"J'aime analyser avant d'agir","type":"T1"},
+      {"id":"s2","label":"Je suis chaleureux avec les autres","type":"T2"},
+      {"id":"s3","label":"Je vais droit au but","type":"T3"},
+      {"id":"s4","label":"Je suis créatif","type":"T4"},
+      {"id":"s5","label":"Je suis discipliné","type":"T5"},
+      {"id":"s6","label":"J'aime l'action","type":"T6"}
+    ]
+  }
+]
