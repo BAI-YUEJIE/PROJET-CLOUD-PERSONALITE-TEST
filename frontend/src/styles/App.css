@@ -1,0 +1,42 @@
+.app {
+  min-height: 100vh;
+}
+
+/* Page temporaire (pour tester la navigation) */
+.page-temporaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.page-temporaire h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-temporaire p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.page-temporaire button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-temporaire button:hover {
+  background: #764ba2;
+  transform: translateY(-2px);
+}
