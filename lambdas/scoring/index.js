@@ -20,14 +20,15 @@ function calculerGeometrie(tousLesClassements) {
   };
 
   // tousLesClassements = { "1": {square:6,...}, "2": {...}, ... }
-  Object.values(tousLesClassements || {}).forEach((classement) => {
-    Object.entries(classement || {}).forEach(([typeId, rang]) => {
-      if (scores[typeId] !== undefined) {
-        // 6 = 6 points, 1 = 1 point
-        scores[typeId] += Number(rang || 0);
-      }
-    });
+ Object.values(tousLesClassements || {}).forEach((classement) => {
+  if (!classement || typeof classement !== "object") return;
+
+  Object.entries(classement).forEach(([typeId, rang]) => {
+    if (scores[typeId] !== undefined) {
+      scores[typeId] += Number(rang || 0);
+    }
   });
+});
 
   const scoreTotal = Object.values(scores).reduce((sum, s) => sum + s, 0) || 1;
 
@@ -58,7 +59,7 @@ export const handler = async (event) => {
   // Supporte 2 formats :
   // - { tousLesClassements: {...} } (recommandé)
   // - {...} directement (si elle envoie l'objet brut)
-  const tousLesClassements = body.tousLesClassements ?? body;
+ const tousLesClassements = body?.tousLesClassements ?? body;
 
   const calc = calculerGeometrie(tousLesClassements);
 
