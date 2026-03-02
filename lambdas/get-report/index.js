@@ -1,7 +1,7 @@
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
-const endpoint = process.env.AWS_ENDPOINT_URL || "http://host.docker.internal:4566";
-const s3 = new S3Client({ region: "us-east-1", endpoint, forcePathStyle: true });
+const endpoint = process.env.AWS_ENDPOINT_URL;
+const s3 = new S3Client({ region: "us-east-1", ...(endpoint && { endpoint }), forcePathStyle: !!endpoint });
 
 const streamToString = async (stream) =>
   await new Promise((resolve, reject) => {

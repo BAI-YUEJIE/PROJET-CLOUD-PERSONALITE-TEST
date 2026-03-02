@@ -2,12 +2,12 @@ import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 import crypto from "crypto";
 
-// IMPORTANT: dans Docker/Lambda, localhost ne pointe pas sur LocalStack.
-// En local Windows on utilise host.docker.internal (comme tu faisais).
-const endpoint = process.env.AWS_ENDPOINT_URL || "http://host.docker.internal:4566";
+// En local avec LocalStack, définir AWS_ENDPOINT_URL=http://localhost:4566
+// En production AWS, ne pas définir cette variable (le SDK utilise les endpoints natifs)
+const endpoint = process.env.AWS_ENDPOINT_URL;
 
-const ddb = new DynamoDBClient({ region: "us-east-1", endpoint });
-const sqs = new SQSClient({ region: "us-east-1", endpoint });
+const ddb = new DynamoDBClient({ region: "us-east-1", ...(endpoint && { endpoint }) });
+const sqs = new SQSClient({ region: "us-east-1", ...(endpoint && { endpoint }) });
 
 function calculerGeometrie(tousLesClassements) {
   const scores = {
@@ -59,7 +59,7 @@ export const handler = async (event) => {
   // Supporte 2 formats :
   // - { tousLesClassements: {...} } (recommandé)
   // - {...} directement (si elle envoie l'objet brut)
- const tousLesClassements = body?.tousLesClassements ?? body;
+ const tousLesClassements = body?.tousLesClassements ?? body?.rankings ?? body;
 
   const calc = calculerGeometrie(tousLesClassements);
 
