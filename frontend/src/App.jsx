@@ -19,25 +19,32 @@ function App() {
     setResultatsFinaux(null);
   };
 
-  const terminerTest = (classements) => {
+  const API_URL = import.meta.env.VITE_API_URL; // defined in .env or via Vite
+
+  const terminerTest = async (classements) => {
     console.log('📊 Classements utilisateur:', classements);
-    
-    // 🚧 MODE DÉVELOPPEMENT: Utiliser Mock
+
+    if (API_URL) {
+      try {
+        const res = await fetch(`${API_URL}/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rankings: classements })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setResultatsFinaux(data);
+        setPageActuelle('resultat');
+        return;
+      } catch (err) {
+        console.error('❌ erreur appel backend :', err);
+        // éventuellement afficher message d'erreur à l'utilisateur
+      }
+    }
+
+    // fallback mock (développement local sans backend)
     const resultats = calculerScoresMock(classements);
     console.log('✅ Résultats calculés (MOCK):', resultats);
-    
-    // 🔜 MODE PRODUCTION: Appeler vrai backend
-    // fetch('API_GATEWAY_URL/submit', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ rankings: classements })
-    // })
-    // .then(res => res.json())
-    // .then(resultats => {
-    //   setResultatsFinaux(resultats);
-    //   setPageActuelle('resultat');
-    // });
-    
     setResultatsFinaux(resultats);
     setPageActuelle('resultat');
   };

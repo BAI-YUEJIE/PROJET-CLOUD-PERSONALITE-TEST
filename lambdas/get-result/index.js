@@ -1,7 +1,7 @@
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
 
-const endpoint = process.env.AWS_ENDPOINT_URL || "http://host.docker.internal:4566";
-const ddb = new DynamoDBClient({ region: "us-east-1", endpoint });
+const endpoint = process.env.AWS_ENDPOINT_URL;
+const ddb = new DynamoDBClient({ region: "us-east-1", ...(endpoint && { endpoint }) });
 
 export const handler = async (event) => {
   const id =

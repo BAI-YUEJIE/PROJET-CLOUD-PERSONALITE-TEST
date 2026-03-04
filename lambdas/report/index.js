@@ -1,10 +1,10 @@
 import { DynamoDBClient, GetItemCommand, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-const endpoint = process.env.AWS_ENDPOINT_URL || "http://host.docker.internal:4566";
+const endpoint = process.env.AWS_ENDPOINT_URL;
 
-const ddb = new DynamoDBClient({ region: "us-east-1", endpoint });
-const s3  = new S3Client({ region: "us-east-1", endpoint, forcePathStyle: true });
+const ddb = new DynamoDBClient({ region: "us-east-1", ...(endpoint && { endpoint }) });
+const s3  = new S3Client({ region: "us-east-1", ...(endpoint && { endpoint }), forcePathStyle: !!endpoint });
 
 export const handler = async (event) => {
   for (const record of event.Records || []) {
