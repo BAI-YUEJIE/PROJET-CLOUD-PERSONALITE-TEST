@@ -1,0 +1,10 @@
+{
+  "answers": [
+    {"type":"T1","value":6},
+    {"type":"T2","value":2},
+    {"type":"T3","value":4},
+    {"type":"T4","value":1},
+    {"type":"T5","value":5},
+    {"type":"T6","value":3}
+  ]
+}
