@@ -1,0 +1,139 @@
+.accueil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.carte-accueil {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+}
+
+.carte-accueil h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.sous-titre {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.formes-apercu {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+  font-size: 2.5rem;
+}
+
+.forme {
+  animation: flotter 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.forme:nth-child(1) { animation-delay: 0s; }
+.forme:nth-child(2) { animation-delay: 0.5s; }
+.forme:nth-child(3) { animation-delay: 1s; }
+.forme:nth-child(4) { animation-delay: 1.5s; }
+.forme:nth-child(5) { animation-delay: 2s; }
+.forme:nth-child(6) { animation-delay: 2.5s; }
+
+@keyframes flotter {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+.info-test {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.info-test h2 {
+  color: #34495e;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.info-test ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-test li {
+  padding: 0.75rem 0;
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.info-test li:last-child {
+  border-bottom: none;
+}
+
+.btn-demarrer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 3.5rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.btn-demarrer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
+.btn-demarrer:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carte-accueil {
+    padding: 2rem;
+  }
+
+  .carte-accueil h1 {
+    font-size: 2rem;
+  }
+
+  .formes-apercu {
+    font-size: 2rem;
+    gap: 1rem;
+  }
+
+  .info-test {
+    padding: 1.5rem;
+  }
+
+  .btn-demarrer {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,37 @@
+.barre-progres-conteneur {
+  margin-bottom: 2rem;
+}
+
+.info-progres {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.texte-module {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.texte-pourcentage {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.barre-progres {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.remplissage-progres {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
